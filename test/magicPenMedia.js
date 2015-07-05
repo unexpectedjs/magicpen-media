@@ -148,28 +148,88 @@ describe('magicpen-media', function () {
                     '</div>'
                 );
             });
+
+            describe('and btoa available', function () {
+                var originalBtoa = global.Blob;
+                beforeEach(function () {
+                    global.btoa = sinon.spy(function (obj) {
+                        return new Buffer(obj).toString('base64');
+                    });
+                });
+
+                afterEach(function () {
+                    global.btoa = originalBtoa;
+                });
+
+                it('should use btoa when building a data: url', function () {
+                    expect(
+                        magicPen.clone('html').media(new Uint8Array([1, 2, 3]), 'image/png').toString(),
+                        'to equal',
+                        '<div style="font-family: monospace; white-space: nowrap">\n' +
+                        '  <div><img src="data:image/png;base64,AQID"></div>\n' +
+                        '</div>'
+                    );
+                    expect(global.btoa, 'was called once');
+                });
+            });
         });
     });
 
     describe('in text mode', function () {
-        it('should render an image given as a path and no Content-Type as-is with a media: prefix', function () {
-            expect(magicPen.clone('text').media('foo/bar.jpg').toString(), 'to equal', 'media:foo/bar.jpg');
+        describe('#media', function () {
+            it('should render an image given as a path and no Content-Type as-is with a media: prefix', function () {
+                expect(magicPen.clone('text').media('foo/bar.jpg').toString(), 'to equal', 'media:foo/bar.jpg');
+            });
+
+            it('should render an image given as a path and a Content-Type of "image" as-is with an image: prefix', function () {
+                expect(magicPen.clone('text').media('foo/bar.jpg', 'image').toString(), 'to equal', 'image:foo/bar.jpg');
+            });
+
+            it('should accept the contentType property in the options object', function () {
+                expect(magicPen.clone('text').media('foo/bar.jpg', { contentType: 'image' }).toString(), 'to equal', 'image:foo/bar.jpg');
+            });
         });
 
-        it('should render an image given as a path and a Content-Type of "image" as-is with an image: prefix', function () {
-            expect(magicPen.clone('text').media('foo/bar.jpg', 'image').toString(), 'to equal', 'image:foo/bar.jpg');
+        describe('#image', function () {
+            it('should render an image given as a path and no Content-Type as-is with an image: prefix when the image style is used', function () {
+                expect(magicPen.clone('text').image('foo/bar.jpg').toString(), 'to equal', 'image:foo/bar.jpg');
+            });
+
+            it('should accept the content type as the second parameter', function () {
+                expect(magicPen.clone('text').image('foo/bar.jpg', 'image/jpeg').toString(), 'to equal', 'image/jpeg:foo/bar.jpg');
+            });
+
+            it('should accept the contentType property in the options object', function () {
+                expect(magicPen.clone('text').image('foo/bar.jpg', { contentType: 'image/jpeg' }).toString(), 'to equal', 'image/jpeg:foo/bar.jpg');
+            });
         });
 
-        it('should render an image given as a path and no Content-Type as-is with an image: prefix when the image style is used', function () {
-            expect(magicPen.clone('text').image('foo/bar.jpg').toString(), 'to equal', 'image:foo/bar.jpg');
+        describe('#audio', function () {
+            it('should render an audio file given as a path and no Content-Type as-is with an audio: prefix when the audio style is used', function () {
+                expect(magicPen.clone('text').audio('foo/bar.aiff').toString(), 'to equal', 'audio:foo/bar.aiff');
+            });
+
+            it('should accept the content type as the second parameter', function () {
+                expect(magicPen.clone('text').audio('foo/bar.aiff', 'audio/aiff').toString(), 'to equal', 'audio/aiff:foo/bar.aiff');
+            });
+
+            it('should accept the contentType property in the options object', function () {
+                expect(magicPen.clone('text').audio('foo/bar.aiff', { contentType: 'audio/aiff' }).toString(), 'to equal', 'audio/aiff:foo/bar.aiff');
+            });
         });
 
-        it('should render an audio file given as a path and no Content-Type as-is with an audio: prefix when the audio style is used', function () {
-            expect(magicPen.clone('text').audio('foo/bar.aiff').toString(), 'to equal', 'audio:foo/bar.aiff');
-        });
+        describe('#video', function () {
+            it('should render an video file given as a path and no Content-Type as-is with an video: prefix when the video style is used', function () {
+                expect(magicPen.clone('text').video('foo/bar.mkv').toString(), 'to equal', 'video:foo/bar.mkv');
+            });
 
-        it('should render an video file given as a path and no Content-Type as-is with an video: prefix when the video style is used', function () {
-            expect(magicPen.clone('text').video('foo/bar.mkv').toString(), 'to equal', 'video:foo/bar.mkv');
+            it('should accept the contentType as the second parameter', function () {
+                expect(magicPen.clone('text').video('foo/bar.mkv', 'video/x-matroska').toString(), 'to equal', 'video/x-matroska:foo/bar.mkv');
+            });
+
+            it('should accept the contentType property in the options object', function () {
+                expect(magicPen.clone('text').video('foo/bar.mkv', { contentType: 'video/x-matroska' }).toString(), 'to equal', 'video/x-matroska:foo/bar.mkv');
+            });
         });
     });
 });
