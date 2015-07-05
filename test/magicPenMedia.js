@@ -188,6 +188,10 @@ describe('magicpen-media', function () {
             it('should accept the contentType property in the options object', function () {
                 expect(magicPen.clone('text').media('foo/bar.jpg', { contentType: 'image' }).toString(), 'to equal', 'image:foo/bar.jpg');
             });
+
+            it('should render the file size when given a Buffer', function () {
+                expect(magicPen.clone('text').media(new Buffer([1, 2, 3]), { contentType: 'image' }).toString(), 'to equal', 'image:Buffer(3)');
+            });
         });
 
         describe('#image', function () {
