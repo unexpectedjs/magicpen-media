@@ -1,4 +1,4 @@
-/*global describe, it*/
+/*global describe, it, beforeEach, afterEach, global, Uint8Array*/
 var MagicPen = require('magicpen'),
     magicPen = new MagicPen().installPlugin(require('../lib/magicPenMedia')),
     sinon = require('sinon'),
