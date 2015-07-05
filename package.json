@@ -33,5 +33,8 @@
     "travis": "npm test && npm run coverage && (<coverage/lcov.info coveralls || true)",
     "coverage": "NODE_ENV=development istanbul cover --report text --report lcov _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html",
     "prepublish": "browserify -p bundle-collapser/plugin -e lib/magicPenMedia -s magicPenMedia > magicPenMedia.min.js"
+  },
+  "dependencies": {
+    "lodash": "3.10.0"
   }
 }

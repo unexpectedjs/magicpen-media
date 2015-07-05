@@ -12,7 +12,18 @@ describe('magicpen-media', function () {
                 'to equal',
                 '<div style="font-family: monospace; white-space: nowrap">\n' +
                 '  <div><img src="foo/bar.jpg"></div>\n' +
-                '</div>');
+                '</div>'
+            );
+        });
+
+        it('should entitify the src attribute properly', function () {
+            expect(
+                magicPen.clone('html').media('foo&bar".jpg').toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><img src="foo&amp;bar&quot;.jpg"></div>\n' +
+                '</div>'
+            );
         });
 
         it('should render an image given as a data: url', function () {
@@ -21,6 +32,36 @@ describe('magicpen-media', function () {
                 'to equal',
                 '<div style="font-family: monospace; white-space: nowrap">\n' +
                 '  <div><img src="data:image/jpg,base64;Zm9v"></div>\n' +
+                '</div>'
+            );
+        });
+
+        it('should specify width and height if provided in the options object', function () {
+            expect(
+                magicPen.clone('html').media('foo/bar.jpg', { width: 10, height: 20 }).toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><img style="max-width: 6em; max-width: 10ch; max-height: 20em" src="foo/bar.jpg"></div>\n' +
+                '</div>'
+            );
+        });
+
+        it('should render a video via the video style with an options object that has width and height', function () {
+            expect(
+                magicPen.clone('html').video('foo.mkv', { width: 10, height: 20 }).toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><video style="max-width: 6em; max-width: 10ch; max-height: 20em" src="foo.mkv"></video></div>\n' +
+                '</div>'
+            );
+        });
+
+        it('should render audio via the audio style with an options object that has width and height', function () {
+            expect(
+                magicPen.clone('html').audio('foo.aiff', { width: 10, height: 20 }).toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><audio style="max-width: 6em; max-width: 10ch; max-height: 20em" src="foo.aiff"></audio></div>\n' +
                 '</div>'
             );
         });
