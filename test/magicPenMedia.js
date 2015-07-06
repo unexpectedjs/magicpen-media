@@ -226,6 +226,14 @@ describe('magicpen-media', function () {
             it('should accept the contentType property in the options object', function () {
                 expect(magicPen.clone('text').image('foo/bar.jpg', { contentType: 'image/jpeg' }).toString(), 'to equal', 'foo/bar.jpg (image/jpeg)');
             });
+
+            it('should render a data url', function () {
+                expect(magicPen.clone('text').image('data:image/png,base64;AQID').toString(), 'to equal', 'data url (image/png)');
+            });
+
+            it('should prefer the Content-Type from the data: url over the one given in the options object', function () {
+                expect(magicPen.clone('text').image('data:image/png,base64;AQID', { contentType: 'image/jpeg' }).toString(), 'to equal', 'data url (image/png)');
+            });
         });
 
         describe('#audio', function () {
