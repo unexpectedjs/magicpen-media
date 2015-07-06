@@ -41,7 +41,7 @@ describe('magicpen-media', function () {
                 magicPen.clone('html').media('foo/bar.jpg', { width: 10, height: 20 }).toString(),
                 'to equal',
                 '<div style="font-family: monospace; white-space: nowrap">\n' +
-                '  <div><img style="max-width: 6em; max-width: 10ch; max-height: 20em" src="foo/bar.jpg"></div>\n' +
+                '  <div><img src="foo/bar.jpg" style="max-width: 6em; max-width: 10ch; max-height: 20em"></div>\n' +
                 '</div>'
             );
         });
@@ -51,7 +51,7 @@ describe('magicpen-media', function () {
                 magicPen.clone('html').video('foo.mkv', { width: 10, height: 20 }).toString(),
                 'to equal',
                 '<div style="font-family: monospace; white-space: nowrap">\n' +
-                '  <div><video style="max-width: 6em; max-width: 10ch; max-height: 20em" src="foo.mkv"></video></div>\n' +
+                '  <div><video src="foo.mkv" style="max-width: 6em; max-width: 10ch; max-height: 20em"></video></div>\n' +
                 '</div>'
             );
         });
@@ -61,7 +61,7 @@ describe('magicpen-media', function () {
                 magicPen.clone('html').audio('foo.aiff', { width: 10, height: 20 }).toString(),
                 'to equal',
                 '<div style="font-family: monospace; white-space: nowrap">\n' +
-                '  <div><audio style="max-width: 6em; max-width: 10ch; max-height: 20em" src="foo.aiff"></audio></div>\n' +
+                '  <div><audio src="foo.aiff" style="max-width: 6em; max-width: 10ch; max-height: 20em"></audio></div>\n' +
                 '</div>'
             );
         });
