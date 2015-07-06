@@ -197,62 +197,62 @@ describe('magicpen-media', function () {
 
     describe('in text mode', function () {
         describe('#media', function () {
-            it('should render an image given as a path and no Content-Type as-is with a media: prefix', function () {
-                expect(magicPen.clone('text').media('foo/bar.jpg').toString(), 'to equal', 'media:foo/bar.jpg');
+            it('should render an image given as a path and no Content-Type as-is with "media" in parentheses', function () {
+                expect(magicPen.clone('text').media('foo/bar.jpg').toString(), 'to equal', 'foo/bar.jpg (media)');
             });
 
-            it('should render an image given as a path and a Content-Type of "image" as-is with an image: prefix', function () {
-                expect(magicPen.clone('text').media('foo/bar.jpg', 'image').toString(), 'to equal', 'image:foo/bar.jpg');
+            it('should render an image given as a path and a Content-Type of "image" as-is with "image" in parentheses', function () {
+                expect(magicPen.clone('text').media('foo/bar.jpg', 'image').toString(), 'to equal', 'foo/bar.jpg (image)');
             });
 
             it('should accept the contentType property in the options object', function () {
-                expect(magicPen.clone('text').media('foo/bar.jpg', { contentType: 'image' }).toString(), 'to equal', 'image:foo/bar.jpg');
+                expect(magicPen.clone('text').media('foo/bar.jpg', { contentType: 'image' }).toString(), 'to equal', 'foo/bar.jpg (image)');
             });
 
             it('should render the file size when given a Buffer', function () {
-                expect(magicPen.clone('text').media(new Buffer([1, 2, 3]), { contentType: 'image' }).toString(), 'to equal', 'image:Buffer(3)');
+                expect(magicPen.clone('text').media(new Buffer([1, 2, 3]), { contentType: 'image' }).toString(), 'to equal', 'Buffer[3] (image)');
             });
         });
 
         describe('#image', function () {
-            it('should render an image given as a path and no Content-Type as-is with an image: prefix when the image style is used', function () {
-                expect(magicPen.clone('text').image('foo/bar.jpg').toString(), 'to equal', 'image:foo/bar.jpg');
+            it('should render an image given as a path and no Content-Type as-is with "image" in parentheses when the image style is used', function () {
+                expect(magicPen.clone('text').image('foo/bar.jpg').toString(), 'to equal', 'foo/bar.jpg (image)');
             });
 
             it('should accept the content type as the second parameter', function () {
-                expect(magicPen.clone('text').image('foo/bar.jpg', 'image/jpeg').toString(), 'to equal', 'image/jpeg:foo/bar.jpg');
+                expect(magicPen.clone('text').image('foo/bar.jpg', 'image/jpeg').toString(), 'to equal', 'foo/bar.jpg (image/jpeg)');
             });
 
             it('should accept the contentType property in the options object', function () {
-                expect(magicPen.clone('text').image('foo/bar.jpg', { contentType: 'image/jpeg' }).toString(), 'to equal', 'image/jpeg:foo/bar.jpg');
+                expect(magicPen.clone('text').image('foo/bar.jpg', { contentType: 'image/jpeg' }).toString(), 'to equal', 'foo/bar.jpg (image/jpeg)');
             });
         });
 
         describe('#audio', function () {
-            it('should render an audio file given as a path and no Content-Type as-is with an audio: prefix when the audio style is used', function () {
-                expect(magicPen.clone('text').audio('foo/bar.aiff').toString(), 'to equal', 'audio:foo/bar.aiff');
+            it('should render an audio file given as a path and no Content-Type as-is with "audio" in parentheses when the audio style is used', function () {
+                expect(magicPen.clone('text').audio('foo/bar.aiff').toString(), 'to equal', 'foo/bar.aiff (audio)');
             });
 
             it('should accept the content type as the second parameter', function () {
-                expect(magicPen.clone('text').audio('foo/bar.aiff', 'audio/aiff').toString(), 'to equal', 'audio/aiff:foo/bar.aiff');
+                expect(magicPen.clone('text').audio('foo/bar.aiff', 'audio/aiff').toString(), 'to equal', 'foo/bar.aiff (audio/aiff)');
             });
 
             it('should accept the contentType property in the options object', function () {
-                expect(magicPen.clone('text').audio('foo/bar.aiff', { contentType: 'audio/aiff' }).toString(), 'to equal', 'audio/aiff:foo/bar.aiff');
+                expect(magicPen.clone('text').audio('foo/bar.aiff', { contentType: 'audio/aiff' }).toString(), 'to equal', 'foo/bar.aiff (audio/aiff)');
             });
         });
 
         describe('#video', function () {
-            it('should render an video file given as a path and no Content-Type as-is with an video: prefix when the video style is used', function () {
-                expect(magicPen.clone('text').video('foo/bar.mkv').toString(), 'to equal', 'video:foo/bar.mkv');
+            it('should render an video file given as a path and no Content-Type as-is with "video" in parentheses when the video style is used', function () {
+                expect(magicPen.clone('text').video('foo/bar.mkv').toString(), 'to equal', 'foo/bar.mkv (video)');
             });
 
             it('should accept the contentType as the second parameter', function () {
-                expect(magicPen.clone('text').video('foo/bar.mkv', 'video/x-matroska').toString(), 'to equal', 'video/x-matroska:foo/bar.mkv');
+                expect(magicPen.clone('text').video('foo/bar.mkv', 'video/x-matroska').toString(), 'to equal', 'foo/bar.mkv (video/x-matroska)');
             });
 
             it('should accept the contentType property in the options object', function () {
-                expect(magicPen.clone('text').video('foo/bar.mkv', { contentType: 'video/x-matroska' }).toString(), 'to equal', 'video/x-matroska:foo/bar.mkv');
+                expect(magicPen.clone('text').video('foo/bar.mkv', { contentType: 'video/x-matroska' }).toString(), 'to equal', 'foo/bar.mkv (video/x-matroska)');
             });
         });
     });
