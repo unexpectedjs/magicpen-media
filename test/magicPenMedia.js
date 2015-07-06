@@ -36,6 +36,16 @@ describe('magicpen-media', function () {
             );
         });
 
+        it('should support a title passed in the options object', function () {
+            expect(
+                magicPen.clone('html').media('foobar.jpg', { title: 'hey"there' }).toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><img src="foobar.jpg" title="hey&quot;there"></div>\n' +
+                '</div>'
+            );
+        });
+
         it('should render an image given as a data: url', function () {
             expect(
                 magicPen.clone('html').media('data:image/jpg,base64;Zm9v').toString(),
