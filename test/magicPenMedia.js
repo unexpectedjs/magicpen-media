@@ -19,6 +19,26 @@ describe('magicpen-media', function () {
             );
         });
 
+        it('should link to the image url if link:true is provided in the options object', function () {
+            expect(
+                magicPen.clone('html').media('foo/bar.jpg', { link: true }).toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><a href="foo/bar.jpg"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div>\n' +
+                '</div>'
+            );
+        });
+
+        it('should link to an arbitrary url if link is provided in the options object with a string value', function () {
+            expect(
+                magicPen.clone('html').media('foo/bar.jpg', { link: 'http://unexpected.js.org/' }).toString(),
+                'to equal',
+                '<div style="font-family: monospace; white-space: nowrap">\n' +
+                '  <div><a href="http://unexpected.js.org/"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div>\n' +
+                '</div>'
+            );
+        });
+
         it('should entitify the src attribute properly', function () {
             expect(
                 magicPen.clone('html').media('foo&bar".jpg').toString(),
