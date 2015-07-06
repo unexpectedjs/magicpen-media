@@ -201,15 +201,15 @@ describe('magicpen-media', function () {
     describe('in text mode', function () {
         describe('#media', function () {
             it('should render an image given as a path and no Content-Type as-is with "media" in parentheses', function () {
-                expect(magicPen.clone('text').media('foo/bar.jpg').toString(), 'to equal', 'foo/bar.jpg (media)');
+                expect(magicPen.clone('text').media('foo/bar.jpg').toString(), 'to equal', 'foo/bar.jpg (image/jpeg)');
             });
 
             it('should render an image given as a path and a Content-Type of "image" as-is with "image" in parentheses', function () {
-                expect(magicPen.clone('text').media('foo/bar.jpg', 'image').toString(), 'to equal', 'foo/bar.jpg (image)');
+                expect(magicPen.clone('text').media('foo/bar.jpg', 'image').toString(), 'to equal', 'foo/bar.jpg (image/jpeg)');
             });
 
             it('should accept the contentType property in the options object', function () {
-                expect(magicPen.clone('text').media('foo/bar.jpg', { contentType: 'image' }).toString(), 'to equal', 'foo/bar.jpg (image)');
+                expect(magicPen.clone('text').media('foo/bar.jpg', { contentType: 'image' }).toString(), 'to equal', 'foo/bar.jpg (image/jpeg)');
             });
 
             it('should render the file size when given a Buffer', function () {
@@ -218,8 +218,8 @@ describe('magicpen-media', function () {
         });
 
         describe('#image', function () {
-            it('should render an image given as a path and no Content-Type as-is with "image" in parentheses when the image style is used', function () {
-                expect(magicPen.clone('text').image('foo/bar.jpg').toString(), 'to equal', 'foo/bar.jpg (image)');
+            it('should render an image given as a path and no Content-Type as-is with a looked up Content-Type', function () {
+                expect(magicPen.clone('text').image('foo/bar.svg').toString(), 'to equal', 'foo/bar.svg (image/svg+xml)');
             });
 
             it('should accept the content type as the second parameter', function () {
@@ -240,8 +240,8 @@ describe('magicpen-media', function () {
         });
 
         describe('#audio', function () {
-            it('should render an audio file given as a path and no Content-Type as-is with "audio" in parentheses when the audio style is used', function () {
-                expect(magicPen.clone('text').audio('foo/bar.aiff').toString(), 'to equal', 'foo/bar.aiff (audio)');
+            it('should render an audio file given as a path and no Content-Type with the looked up Content-Type in parentheses', function () {
+                expect(magicPen.clone('text').audio('foo/bar.aiff').toString(), 'to equal', 'foo/bar.aiff (audio/x-aiff)');
             });
 
             it('should accept the content type as the second parameter', function () {
@@ -254,8 +254,12 @@ describe('magicpen-media', function () {
         });
 
         describe('#video', function () {
-            it('should render an video file given as a path and no Content-Type as-is with "video" in parentheses when the video style is used', function () {
-                expect(magicPen.clone('text').video('foo/bar.mkv').toString(), 'to equal', 'foo/bar.mkv (video)');
+            it('should render an video file given as a path and no Content-Type as-is with the looked up Content-Type in parentheses', function () {
+                expect(magicPen.clone('text').video('foo/bar.mkv').toString(), 'to equal', 'foo/bar.mkv (video/x-matroska)');
+            });
+
+            it('should render an video file given as a path and no Content-Type as-is with "video" in parentheses when the video style is used and the extension is unknown', function () {
+                expect(magicPen.clone('text').video('foo/bar.foo').toString(), 'to equal', 'foo/bar.foo (video)');
             });
 
             it('should accept the contentType as the second parameter', function () {
