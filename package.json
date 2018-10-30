@@ -9,7 +9,7 @@
   "main": "lib/magicPenMedia.js",
   "author": "Andreas Lind <andreas@one.com>",
   "devDependencies": {
-    "browserify": "8.1.1",
+    "browserify": "16.2.3",
     "bundle-collapser": "1.2.0",
     "coveralls": "2.11.2",
     "eslint": "2.13.1",
