@@ -31,7 +31,7 @@
     "test": "mocha && npm run lint",
     "ci": "npm test && npm run coverage && (<coverage/lcov.info coveralls || true)",
     "coverage": "NODE_ENV=development istanbul cover --report text --report lcov _mocha -- --reporter dot && echo google-chrome coverage/lcov-report/index.html",
-    "prepublish": "browserify -p bundle-collapser/plugin -e lib/magicPenMedia -s magicPenMedia > magicPenMedia.min.js"
+    "prepublishOnly": "browserify -p bundle-collapser/plugin -e lib/magicPenMedia -s magicPenMedia > magicPenMedia.min.js"
   },
   "dependencies": {
     "gettemporaryfilepath": "^1.0.0",
