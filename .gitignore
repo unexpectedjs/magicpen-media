@@ -1,3 +1,4 @@
 /node_modules/
 /coverage/
 /magicPenMedia.min.js
+/.nyc_output/
