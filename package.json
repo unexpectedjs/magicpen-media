@@ -7,7 +7,7 @@
     "url": "https://github.com/unexpectedjs/magicpen-media.git"
   },
   "main": "lib/magicPenMedia.js",
-  "author": "Andreas Lind <andreas@one.com>",
+  "author": "Andreas Lind <andreaslindpetersen@gmail.com>",
   "devDependencies": {
     "browserify": "16.2.3",
     "bundle-collapser": "1.2.0",
