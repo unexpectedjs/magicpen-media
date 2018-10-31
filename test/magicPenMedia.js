@@ -21,9 +21,7 @@ describe('magicpen-media', () => {
           .media('foo/bar.jpg')
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><img src="foo/bar.jpg" title="foo/bar.jpg"></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><img src="foo/bar.jpg" title="foo/bar.jpg"></div></div>'
       );
     });
 
@@ -34,9 +32,7 @@ describe('magicpen-media', () => {
           .media('foo/bar.jpg', { link: true })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><a href="foo/bar.jpg"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><a href="foo/bar.jpg"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div></div>'
       );
     });
 
@@ -47,9 +43,7 @@ describe('magicpen-media', () => {
           .media('foo/bar.jpg', { link: 'http://unexpected.js.org/' })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><a href="http://unexpected.js.org/"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><a href="http://unexpected.js.org/"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div></div>'
       );
     });
 
@@ -60,9 +54,7 @@ describe('magicpen-media', () => {
           .media('foo&bar".jpg')
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><img src="foo&amp;bar&quot;.jpg" title="foo&amp;bar&quot;.jpg"></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><img src="foo&amp;bar&quot;.jpg" title="foo&amp;bar&quot;.jpg"></div></div>'
       );
     });
 
@@ -73,9 +65,7 @@ describe('magicpen-media', () => {
           .media('foobar.jpg', { alt: 'hey"there' })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><img src="foobar.jpg" alt="hey&quot;there" title="foobar.jpg"></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><img src="foobar.jpg" alt="hey&quot;there" title="foobar.jpg"></div></div>'
       );
     });
 
@@ -86,9 +76,7 @@ describe('magicpen-media', () => {
           .media('foobar.jpg', { title: 'hey"there' })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><img src="foobar.jpg" title="hey&quot;there"></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><img src="foobar.jpg" title="hey&quot;there"></div></div>'
       );
     });
 
@@ -99,9 +87,7 @@ describe('magicpen-media', () => {
           .media('data:image/jpg,base64;Zm9v')
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><img src="data:image/jpg,base64;Zm9v"></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><img src="data:image/jpg,base64;Zm9v"></div></div>'
       );
     });
 
@@ -112,9 +98,7 @@ describe('magicpen-media', () => {
           .media('foo/bar.jpg', { width: 10, height: 20 })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><img src="foo/bar.jpg" title="foo/bar.jpg" style="max-width: 6em; max-width: 10ch; max-height: 20em"></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><img src="foo/bar.jpg" title="foo/bar.jpg" style="max-width: 6em; max-width: 10ch; max-height: 20em"></div></div>'
       );
     });
 
@@ -125,9 +109,7 @@ describe('magicpen-media', () => {
           .video('foo.mkv', { width: 10, height: 20 })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><video src="foo.mkv" title="foo.mkv" style="max-width: 6em; max-width: 10ch; max-height: 20em"></video></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><video src="foo.mkv" title="foo.mkv" style="max-width: 6em; max-width: 10ch; max-height: 20em"></video></div></div>'
       );
     });
 
@@ -138,9 +120,7 @@ describe('magicpen-media', () => {
           .audio('foo.aiff', { width: 10, height: 20 })
           .toString(),
         'to equal',
-        '<div style="font-family: monospace; white-space: nowrap">\n' +
-          '  <div><audio src="foo.aiff" title="foo.aiff" style="max-width: 6em; max-width: 10ch; max-height: 20em"></audio></div>\n' +
-          '</div>'
+        '<div style="font-family: monospace; white-space: nowrap"><div><audio src="foo.aiff" title="foo.aiff" style="max-width: 6em; max-width: 10ch; max-height: 20em"></audio></div></div>'
       );
     });
 
@@ -171,9 +151,7 @@ describe('magicpen-media', () => {
             .media(new Uint8Array([1, 2, 3]), 'image/png')
             .toString(),
           'to equal',
-          '<div style="font-family: monospace; white-space: nowrap">\n' +
-            '  <div><img src="blob:foobarquux"></div>\n' +
-            '</div>'
+          '<div style="font-family: monospace; white-space: nowrap"><div><img src="blob:foobarquux"></div></div>'
         );
         expect(global.Blob, 'was called once');
         expect(global.Blob, 'was called with new');
@@ -192,9 +170,7 @@ describe('magicpen-media', () => {
             .media(new Uint8Array([1, 2, 3]), 'image/png')
             .toString(),
           'to equal',
-          '<div style="font-family: monospace; white-space: nowrap">\n' +
-            '  <div><img src="blob:foobarquux"></div>\n' +
-            '</div>'
+          '<div style="font-family: monospace; white-space: nowrap"><div><img src="blob:foobarquux"></div></div>'
         );
         expect(global.Blob, 'was called once');
         expect(global.Blob, 'was called with new');
@@ -228,9 +204,7 @@ describe('magicpen-media', () => {
             .media(new Uint8Array([1, 2, 3]), 'image/png')
             .toString(),
           'to equal',
-          '<div style="font-family: monospace; white-space: nowrap">\n' +
-            '  <div><img src="data:image/png;base64,AQID"></div>\n' +
-            '</div>'
+          '<div style="font-family: monospace; white-space: nowrap"><div><img src="data:image/png;base64,AQID"></div></div>'
         );
       });
 
@@ -241,9 +215,7 @@ describe('magicpen-media', () => {
             .media(new Buffer([1, 2, 3]), 'image/png')
             .toString(),
           'to equal',
-          '<div style="font-family: monospace; white-space: nowrap">\n' +
-            '  <div><img src="data:image/png;base64,AQID"></div>\n' +
-            '</div>'
+          '<div style="font-family: monospace; white-space: nowrap"><div><img src="data:image/png;base64,AQID"></div></div>'
         );
       });
 
@@ -264,9 +236,7 @@ describe('magicpen-media', () => {
               .media(new Uint8Array([1, 2, 3]), 'image/png')
               .toString(),
             'to equal',
-            '<div style="font-family: monospace; white-space: nowrap">\n' +
-              '  <div><img src="data:image/png;base64,AQID"></div>\n' +
-              '</div>'
+            '<div style="font-family: monospace; white-space: nowrap"><div><img src="data:image/png;base64,AQID"></div></div>'
           );
           expect(global.btoa, 'was called once');
         });
