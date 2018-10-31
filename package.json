@@ -19,7 +19,7 @@
     "nyc": "^13.1.0",
     "sinon": "^1.15.4",
     "unexpected": "^9.0.0",
-    "unexpected-fs": "^1.1.0",
+    "unexpected-fs": "^3.0.0",
     "unexpected-sinon": "^6.4.1"
   },
   "files": [
