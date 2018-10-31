@@ -460,118 +460,123 @@ describe('magicpen-media', () => {
     });
 
     describe('with fallbackToDisc', () => {
-      it('should write the contents of a data: url to a temporary file', () => expect(
-        () => {
-          const text = magicPen
-            .clone('text')
-            .image('data:image/png;base64,AQID', { fallbackToDisc: true })
-            .toString();
-          expect(text, 'to match', /^\/tmp\/.* \(image\/png\)$/);
-          const fileName = text.split(' ')[0];
-
-          return expect(fileName, 'to be a path satisfying', {
-            isFile: true,
-            content: new Buffer([1, 2, 3])
-          });
-        },
-        'with fs mocked out',
-        {
-          '/tmp': {}
-        },
-        'not to error'
-      ));
-
-      it('should write the contents of a Uint8Array to a temporary file', () => expect(
-        () => {
-          const text = magicPen
-            .clone('text')
-            .image(new Uint8Array([1, 2, 3]), { fallbackToDisc: true })
-            .toString();
-          expect(text, 'to match', /^\/tmp\/.* \(image\)$/);
-          const fileName = text.split(' ')[0];
-
-          return expect(fileName, 'to be a path satisfying', {
-            isFile: true,
-            content: new Buffer([1, 2, 3])
-          });
-        },
-        'with fs mocked out',
-        {
-          '/tmp': {}
-        },
-        'not to error'
-      ));
-
-      it('should write the contents of a Buffer to a temporary file', () => expect(
-        () => {
-          const text = magicPen
-            .clone('text')
-            .image(new Buffer([1, 2, 3]), { fallbackToDisc: true })
-            .toString();
-          expect(text, 'to match', /^\/tmp\/.* \(image\)/);
-          const fileName = text.split(' ')[0];
-
-          return expect(fileName, 'to be a path satisfying', {
-            isFile: true,
-            content: new Buffer([1, 2, 3])
-          });
-        },
-        'with fs mocked out',
-        {
-          '/tmp': {}
-        },
-        'not to error'
-      ));
-
-      it('should use an explicitly provided file name when a data url is written to disc', () => expect(
-        () => {
-          const fileName = getTemporaryFilePath({ suffix: '.foobar' });
-          expect(
-            magicPen
+      it('should write the contents of a data: url to a temporary file', () =>
+        expect(
+          () => {
+            const text = magicPen
               .clone('text')
-              .image('data:image/png;base64,MTIz', {
-                fallbackToDisc: fileName
-              })
-              .toString(),
-            'to equal',
-            fileName + ' (image/png)'
-          );
+              .image('data:image/png;base64,AQID', { fallbackToDisc: true })
+              .toString();
+            expect(text, 'to match', /^\/tmp\/.* \(image\/png\)$/);
+            const fileName = text.split(' ')[0];
 
-          return expect(fileName, 'to be a path satisfying', {
-            isFile: true,
-            content: new Buffer('123')
-          });
-        },
-        'with fs mocked out',
-        {
-          '/tmp': {}
-        },
-        'not to error'
-      ));
+            return expect(fileName, 'to be a path satisfying', {
+              isFile: true,
+              content: new Buffer([1, 2, 3])
+            });
+          },
+          'with fs mocked out',
+          {
+            '/tmp': {}
+          },
+          'not to error'
+        ));
 
-      it('should use an explicitly provided file name', () => expect(
-        () => {
-          const fileName = getTemporaryFilePath({ suffix: '.foobar' });
-          expect(
-            magicPen
+      it('should write the contents of a Uint8Array to a temporary file', () =>
+        expect(
+          () => {
+            const text = magicPen
               .clone('text')
-              .image(new Buffer([1, 2, 3]), { fallbackToDisc: fileName })
-              .toString(),
-            'to equal',
-            fileName + ' (image)'
-          );
+              .image(new Uint8Array([1, 2, 3]), { fallbackToDisc: true })
+              .toString();
+            expect(text, 'to match', /^\/tmp\/.* \(image\)$/);
+            const fileName = text.split(' ')[0];
 
-          return expect(fileName, 'to be a path satisfying', {
-            isFile: true,
-            content: new Buffer([1, 2, 3])
-          });
-        },
-        'with fs mocked out',
-        {
-          '/tmp': {}
-        },
-        'not to error'
-      ));
+            return expect(fileName, 'to be a path satisfying', {
+              isFile: true,
+              content: new Buffer([1, 2, 3])
+            });
+          },
+          'with fs mocked out',
+          {
+            '/tmp': {}
+          },
+          'not to error'
+        ));
+
+      it('should write the contents of a Buffer to a temporary file', () =>
+        expect(
+          () => {
+            const text = magicPen
+              .clone('text')
+              .image(new Buffer([1, 2, 3]), { fallbackToDisc: true })
+              .toString();
+            expect(text, 'to match', /^\/tmp\/.* \(image\)/);
+            const fileName = text.split(' ')[0];
+
+            return expect(fileName, 'to be a path satisfying', {
+              isFile: true,
+              content: new Buffer([1, 2, 3])
+            });
+          },
+          'with fs mocked out',
+          {
+            '/tmp': {}
+          },
+          'not to error'
+        ));
+
+      it('should use an explicitly provided file name when a data url is written to disc', () =>
+        expect(
+          () => {
+            const fileName = getTemporaryFilePath({ suffix: '.foobar' });
+            expect(
+              magicPen
+                .clone('text')
+                .image('data:image/png;base64,MTIz', {
+                  fallbackToDisc: fileName
+                })
+                .toString(),
+              'to equal',
+              fileName + ' (image/png)'
+            );
+
+            return expect(fileName, 'to be a path satisfying', {
+              isFile: true,
+              content: new Buffer('123')
+            });
+          },
+          'with fs mocked out',
+          {
+            '/tmp': {}
+          },
+          'not to error'
+        ));
+
+      it('should use an explicitly provided file name', () =>
+        expect(
+          () => {
+            const fileName = getTemporaryFilePath({ suffix: '.foobar' });
+            expect(
+              magicPen
+                .clone('text')
+                .image(new Buffer([1, 2, 3]), { fallbackToDisc: fileName })
+                .toString(),
+              'to equal',
+              fileName + ' (image)'
+            );
+
+            return expect(fileName, 'to be a path satisfying', {
+              isFile: true,
+              content: new Buffer([1, 2, 3])
+            });
+          },
+          'with fs mocked out',
+          {
+            '/tmp': {}
+          },
+          'not to error'
+        ));
     });
   });
 });
