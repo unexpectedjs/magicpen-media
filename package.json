@@ -18,9 +18,9 @@
     "mocha": "^2.2.5",
     "nyc": "^13.1.0",
     "sinon": "^1.15.4",
-    "unexpected": "^9.0.0",
+    "unexpected": "^10.39.1",
     "unexpected-fs": "^3.0.0",
-    "unexpected-sinon": "^6.4.1"
+    "unexpected-sinon": "^10.10.1"
   },
   "files": [
     "lib",
