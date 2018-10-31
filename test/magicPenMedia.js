@@ -1,20 +1,20 @@
 /*global describe, it, beforeEach, afterEach, global, Uint8Array*/
-var MagicPen = require('magicpen');
+const MagicPen = require('magicpen');
 
-var magicPen = new MagicPen().installPlugin(require('../lib/magicPenMedia'));
+const magicPen = new MagicPen().installPlugin(require('../lib/magicPenMedia'));
 
-var getTemporaryFilePath = require('gettemporaryfilepath');
+const getTemporaryFilePath = require('gettemporaryfilepath');
 
-var sinon = require('sinon');
+const sinon = require('sinon');
 
-var expect = require('unexpected')
+const expect = require('unexpected')
   .clone()
   .installPlugin(require('unexpected-sinon'))
   .installPlugin(require('unexpected-fs'));
 
-describe('magicpen-media', function() {
-  describe('in HTML mode', function() {
-    it('should render an image given as a path', function() {
+describe('magicpen-media', () => {
+  describe('in HTML mode', () => {
+    it('should render an image given as a path', () => {
       expect(
         magicPen
           .clone('html')
@@ -27,7 +27,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should link to the image url if link:true is provided in the options object', function() {
+    it('should link to the image url if link:true is provided in the options object', () => {
       expect(
         magicPen
           .clone('html')
@@ -40,7 +40,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should link to an arbitrary url if link is provided in the options object with a string value', function() {
+    it('should link to an arbitrary url if link is provided in the options object with a string value', () => {
       expect(
         magicPen
           .clone('html')
@@ -53,7 +53,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should entitify the src attribute properly', function() {
+    it('should entitify the src attribute properly', () => {
       expect(
         magicPen
           .clone('html')
@@ -66,7 +66,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should support an alt text passed in the options object', function() {
+    it('should support an alt text passed in the options object', () => {
       expect(
         magicPen
           .clone('html')
@@ -79,7 +79,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should support a title passed in the options object', function() {
+    it('should support a title passed in the options object', () => {
       expect(
         magicPen
           .clone('html')
@@ -92,7 +92,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should render an image given as a data: url', function() {
+    it('should render an image given as a data: url', () => {
       expect(
         magicPen
           .clone('html')
@@ -105,7 +105,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should specify width and height if provided in the options object', function() {
+    it('should specify width and height if provided in the options object', () => {
       expect(
         magicPen
           .clone('html')
@@ -118,7 +118,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should render a video via the video style with an options object that has width and height', function() {
+    it('should render a video via the video style with an options object that has width and height', () => {
       expect(
         magicPen
           .clone('html')
@@ -131,7 +131,7 @@ describe('magicpen-media', function() {
       );
     });
 
-    it('should render audio via the audio style with an options object that has width and height', function() {
+    it('should render audio via the audio style with an options object that has width and height', () => {
       expect(
         magicPen
           .clone('html')
@@ -144,29 +144,27 @@ describe('magicpen-media', function() {
       );
     });
 
-    describe('with Blob and URL.createObjectURL available', function() {
-      var originalBlob = global.Blob;
+    describe('with Blob and URL.createObjectURL available', () => {
+      const originalBlob = global.Blob;
 
-      var originalURL = global.URL;
-      beforeEach(function() {
+      const originalURL = global.URL;
+      beforeEach(() => {
         global.Blob = sinon.spy(function(data, contentType) {
           this.data = data;
           this.contentType = contentType;
         });
 
         global.URL = {
-          createObjectURL: sinon.spy(function() {
-            return 'blob:foobarquux';
-          })
+          createObjectURL: sinon.spy(() => 'blob:foobarquux')
         };
       });
 
-      afterEach(function() {
+      afterEach(() => {
         global.Blob = originalBlob;
         global.URL = originalURL;
       });
 
-      it('should render an image given as a Uint8Array as a blob: url', function() {
+      it('should render an image given as a Uint8Array as a blob: url', () => {
         expect(
           magicPen
             .clone('html')
@@ -187,7 +185,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should render an image given as a Buffer as a blob: url', function() {
+      it('should render an image given as a Buffer as a blob: url', () => {
         expect(
           magicPen
             .clone('html')
@@ -209,21 +207,21 @@ describe('magicpen-media', function() {
       });
     });
 
-    describe('with Blob and URL.createObjectURL unavailable', function() {
-      var originalBlob = global.Blob;
+    describe('with Blob and URL.createObjectURL unavailable', () => {
+      const originalBlob = global.Blob;
 
-      var originalURL = global.URL;
-      beforeEach(function() {
+      const originalURL = global.URL;
+      beforeEach(() => {
         global.Blob = undefined;
         global.URL = undefined;
       });
 
-      afterEach(function() {
+      afterEach(() => {
         global.Blob = originalBlob;
         global.URL = originalURL;
       });
 
-      it('should render an image given as a Uint8Array as a data: url', function() {
+      it('should render an image given as a Uint8Array as a data: url', () => {
         expect(
           magicPen
             .clone('html')
@@ -236,7 +234,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should render an image given as a Buffer as a data: url', function() {
+      it('should render an image given as a Buffer as a data: url', () => {
         expect(
           magicPen
             .clone('html')
@@ -249,19 +247,17 @@ describe('magicpen-media', function() {
         );
       });
 
-      describe('and btoa available', function() {
-        var originalBtoa = global.Blob;
-        beforeEach(function() {
-          global.btoa = sinon.spy(function(obj) {
-            return new Buffer(obj).toString('base64');
-          });
+      describe('and btoa available', () => {
+        const originalBtoa = global.Blob;
+        beforeEach(() => {
+          global.btoa = sinon.spy(obj => new Buffer(obj).toString('base64'));
         });
 
-        afterEach(function() {
+        afterEach(() => {
           global.btoa = originalBtoa;
         });
 
-        it('should use btoa when building a data: url', function() {
+        it('should use btoa when building a data: url', () => {
           expect(
             magicPen
               .clone('html')
@@ -278,9 +274,9 @@ describe('magicpen-media', function() {
     });
   });
 
-  describe('in text mode', function() {
-    describe('#media', function() {
-      it('should render an image given as a path and no Content-Type as-is with "media" in parentheses', function() {
+  describe('in text mode', () => {
+    describe('#media', () => {
+      it('should render an image given as a path and no Content-Type as-is with "media" in parentheses', () => {
         expect(
           magicPen
             .clone('text')
@@ -291,7 +287,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should render an image given as a path and a Content-Type of "image" as-is with "image" in parentheses', function() {
+      it('should render an image given as a path and a Content-Type of "image" as-is with "image" in parentheses', () => {
         expect(
           magicPen
             .clone('text')
@@ -302,7 +298,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the contentType property in the options object', function() {
+      it('should accept the contentType property in the options object', () => {
         expect(
           magicPen
             .clone('text')
@@ -313,7 +309,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should render the file size when given a Buffer', function() {
+      it('should render the file size when given a Buffer', () => {
         expect(
           magicPen
             .clone('text')
@@ -325,8 +321,8 @@ describe('magicpen-media', function() {
       });
     });
 
-    describe('#image', function() {
-      it('should render an image given as a path and no Content-Type as-is with a looked up Content-Type', function() {
+    describe('#image', () => {
+      it('should render an image given as a path and no Content-Type as-is with a looked up Content-Type', () => {
         expect(
           magicPen
             .clone('text')
@@ -337,7 +333,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the content type as the second parameter', function() {
+      it('should accept the content type as the second parameter', () => {
         expect(
           magicPen
             .clone('text')
@@ -348,7 +344,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the contentType property in the options object', function() {
+      it('should accept the contentType property in the options object', () => {
         expect(
           magicPen
             .clone('text')
@@ -359,7 +355,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should render a data url', function() {
+      it('should render a data url', () => {
         expect(
           magicPen
             .clone('text')
@@ -370,7 +366,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should prefer the Content-Type from the data: url over the one given in the options object', function() {
+      it('should prefer the Content-Type from the data: url over the one given in the options object', () => {
         expect(
           magicPen
             .clone('text')
@@ -382,8 +378,8 @@ describe('magicpen-media', function() {
       });
     });
 
-    describe('#audio', function() {
-      it('should render an audio file given as a path and no Content-Type with the looked up Content-Type in parentheses', function() {
+    describe('#audio', () => {
+      it('should render an audio file given as a path and no Content-Type with the looked up Content-Type in parentheses', () => {
         expect(
           magicPen
             .clone('text')
@@ -394,7 +390,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the content type as the second parameter', function() {
+      it('should accept the content type as the second parameter', () => {
         expect(
           magicPen
             .clone('text')
@@ -405,7 +401,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the contentType property in the options object', function() {
+      it('should accept the contentType property in the options object', () => {
         expect(
           magicPen
             .clone('text')
@@ -417,8 +413,8 @@ describe('magicpen-media', function() {
       });
     });
 
-    describe('#video', function() {
-      it('should render an video file given as a path and no Content-Type as-is with the looked up Content-Type in parentheses', function() {
+    describe('#video', () => {
+      it('should render an video file given as a path and no Content-Type as-is with the looked up Content-Type in parentheses', () => {
         expect(
           magicPen
             .clone('text')
@@ -429,7 +425,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should render an video file given as a path and no Content-Type as-is with "video" in parentheses when the video style is used and the extension is unknown', function() {
+      it('should render an video file given as a path and no Content-Type as-is with "video" in parentheses when the video style is used and the extension is unknown', () => {
         expect(
           magicPen
             .clone('text')
@@ -440,7 +436,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the contentType as the second parameter', function() {
+      it('should accept the contentType as the second parameter', () => {
         expect(
           magicPen
             .clone('text')
@@ -451,7 +447,7 @@ describe('magicpen-media', function() {
         );
       });
 
-      it('should accept the contentType property in the options object', function() {
+      it('should accept the contentType property in the options object', () => {
         expect(
           magicPen
             .clone('text')
@@ -463,129 +459,119 @@ describe('magicpen-media', function() {
       });
     });
 
-    describe('with fallbackToDisc', function() {
-      it('should write the contents of a data: url to a temporary file', function() {
-        return expect(
-          function() {
-            var text = magicPen
+    describe('with fallbackToDisc', () => {
+      it('should write the contents of a data: url to a temporary file', () => expect(
+        () => {
+          const text = magicPen
+            .clone('text')
+            .image('data:image/png;base64,AQID', { fallbackToDisc: true })
+            .toString();
+          expect(text, 'to match', /^\/tmp\/.* \(image\/png\)$/);
+          const fileName = text.split(' ')[0];
+
+          return expect(fileName, 'to be a path satisfying', {
+            isFile: true,
+            content: new Buffer([1, 2, 3])
+          });
+        },
+        'with fs mocked out',
+        {
+          '/tmp': {}
+        },
+        'not to error'
+      ));
+
+      it('should write the contents of a Uint8Array to a temporary file', () => expect(
+        () => {
+          const text = magicPen
+            .clone('text')
+            .image(new Uint8Array([1, 2, 3]), { fallbackToDisc: true })
+            .toString();
+          expect(text, 'to match', /^\/tmp\/.* \(image\)$/);
+          const fileName = text.split(' ')[0];
+
+          return expect(fileName, 'to be a path satisfying', {
+            isFile: true,
+            content: new Buffer([1, 2, 3])
+          });
+        },
+        'with fs mocked out',
+        {
+          '/tmp': {}
+        },
+        'not to error'
+      ));
+
+      it('should write the contents of a Buffer to a temporary file', () => expect(
+        () => {
+          const text = magicPen
+            .clone('text')
+            .image(new Buffer([1, 2, 3]), { fallbackToDisc: true })
+            .toString();
+          expect(text, 'to match', /^\/tmp\/.* \(image\)/);
+          const fileName = text.split(' ')[0];
+
+          return expect(fileName, 'to be a path satisfying', {
+            isFile: true,
+            content: new Buffer([1, 2, 3])
+          });
+        },
+        'with fs mocked out',
+        {
+          '/tmp': {}
+        },
+        'not to error'
+      ));
+
+      it('should use an explicitly provided file name when a data url is written to disc', () => expect(
+        () => {
+          const fileName = getTemporaryFilePath({ suffix: '.foobar' });
+          expect(
+            magicPen
               .clone('text')
-              .image('data:image/png;base64,AQID', { fallbackToDisc: true })
-              .toString();
-            expect(text, 'to match', /^\/tmp\/.* \(image\/png\)$/);
-            var fileName = text.split(' ')[0];
+              .image('data:image/png;base64,MTIz', {
+                fallbackToDisc: fileName
+              })
+              .toString(),
+            'to equal',
+            fileName + ' (image/png)'
+          );
 
-            return expect(fileName, 'to be a path satisfying', {
-              isFile: true,
-              content: new Buffer([1, 2, 3])
-            });
-          },
-          'with fs mocked out',
-          {
-            '/tmp': {}
-          },
-          'not to error'
-        );
-      });
+          return expect(fileName, 'to be a path satisfying', {
+            isFile: true,
+            content: new Buffer('123')
+          });
+        },
+        'with fs mocked out',
+        {
+          '/tmp': {}
+        },
+        'not to error'
+      ));
 
-      it('should write the contents of a Uint8Array to a temporary file', function() {
-        return expect(
-          function() {
-            var text = magicPen
+      it('should use an explicitly provided file name', () => expect(
+        () => {
+          const fileName = getTemporaryFilePath({ suffix: '.foobar' });
+          expect(
+            magicPen
               .clone('text')
-              .image(new Uint8Array([1, 2, 3]), { fallbackToDisc: true })
-              .toString();
-            expect(text, 'to match', /^\/tmp\/.* \(image\)$/);
-            var fileName = text.split(' ')[0];
+              .image(new Buffer([1, 2, 3]), { fallbackToDisc: fileName })
+              .toString(),
+            'to equal',
+            fileName + ' (image)'
+          );
 
-            return expect(fileName, 'to be a path satisfying', {
-              isFile: true,
-              content: new Buffer([1, 2, 3])
-            });
-          },
-          'with fs mocked out',
-          {
-            '/tmp': {}
-          },
-          'not to error'
-        );
-      });
-
-      it('should write the contents of a Buffer to a temporary file', function() {
-        return expect(
-          function() {
-            var text = magicPen
-              .clone('text')
-              .image(new Buffer([1, 2, 3]), { fallbackToDisc: true })
-              .toString();
-            expect(text, 'to match', /^\/tmp\/.* \(image\)/);
-            var fileName = text.split(' ')[0];
-
-            return expect(fileName, 'to be a path satisfying', {
-              isFile: true,
-              content: new Buffer([1, 2, 3])
-            });
-          },
-          'with fs mocked out',
-          {
-            '/tmp': {}
-          },
-          'not to error'
-        );
-      });
-
-      it('should use an explicitly provided file name when a data url is written to disc', function() {
-        return expect(
-          function() {
-            var fileName = getTemporaryFilePath({ suffix: '.foobar' });
-            expect(
-              magicPen
-                .clone('text')
-                .image('data:image/png;base64,MTIz', {
-                  fallbackToDisc: fileName
-                })
-                .toString(),
-              'to equal',
-              fileName + ' (image/png)'
-            );
-
-            return expect(fileName, 'to be a path satisfying', {
-              isFile: true,
-              content: new Buffer('123')
-            });
-          },
-          'with fs mocked out',
-          {
-            '/tmp': {}
-          },
-          'not to error'
-        );
-      });
-
-      it('should use an explicitly provided file name', function() {
-        return expect(
-          function() {
-            var fileName = getTemporaryFilePath({ suffix: '.foobar' });
-            expect(
-              magicPen
-                .clone('text')
-                .image(new Buffer([1, 2, 3]), { fallbackToDisc: fileName })
-                .toString(),
-              'to equal',
-              fileName + ' (image)'
-            );
-
-            return expect(fileName, 'to be a path satisfying', {
-              isFile: true,
-              content: new Buffer([1, 2, 3])
-            });
-          },
-          'with fs mocked out',
-          {
-            '/tmp': {}
-          },
-          'not to error'
-        );
-      });
+          return expect(fileName, 'to be a path satisfying', {
+            isFile: true,
+            content: new Buffer([1, 2, 3])
+          });
+        },
+        'with fs mocked out',
+        {
+          '/tmp': {}
+        },
+        'not to error'
+      ));
     });
   });
 });
