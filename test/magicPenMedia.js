@@ -1,15 +1,11 @@
 const MagicPen = require('magicpen');
-
 const magicPen = new MagicPen().installPlugin(require('../lib/magicPenMedia'));
-
 const getTemporaryFilePath = require('gettemporaryfilepath');
-
 const sinon = require('sinon');
-
 const expect = require('unexpected')
   .clone()
-  .installPlugin(require('unexpected-sinon'))
-  .installPlugin(require('unexpected-fs'));
+  .use(require('unexpected-sinon'))
+  .use(require('unexpected-fs'));
 
 describe('magicpen-media', () => {
   describe('in HTML mode', () => {
