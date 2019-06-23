@@ -22,7 +22,6 @@
     "prettier": "^1.14.3",
     "sinon": "^7.1.0",
     "unexpected": "^11.0.0",
-    "unexpected-fs": "^3.0.0",
     "unexpected-sinon": "^10.10.1"
   },
   "files": [
