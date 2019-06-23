@@ -1,4 +1,3 @@
-/*global describe, it, beforeEach, afterEach, global, Uint8Array*/
 const MagicPen = require('magicpen');
 
 const magicPen = new MagicPen().installPlugin(require('../lib/magicPenMedia'));
