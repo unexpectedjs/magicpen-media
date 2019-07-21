@@ -481,7 +481,7 @@ describe('magicpen-media', () => {
               })
               .toString(),
             'to equal',
-            fileName + ' (image/png)'
+            `${fileName} (image/png)`
           );
 
           expect(fs.statSync(fileName), 'to satisfy', {
@@ -503,7 +503,7 @@ describe('magicpen-media', () => {
               .image(new Buffer([1, 2, 3]), { fallbackToDisc: fileName })
               .toString(),
             'to equal',
-            fileName + ' (image)'
+            `${fileName} (image)`
           );
 
           expect(fs.statSync(fileName), 'to satisfy', {
