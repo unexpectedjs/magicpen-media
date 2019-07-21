@@ -207,7 +207,7 @@ describe('magicpen-media', () => {
         expect(
           magicPen
             .clone('html')
-            .media(new Buffer([1, 2, 3]), 'image/png')
+            .media(Buffer.from([1, 2, 3]), 'image/png')
             .toString(),
           'to equal',
           '<div style="font-family: monospace; white-space: nowrap"><div><img src="data:image/png;base64,AQID"></div></div>'
@@ -217,7 +217,7 @@ describe('magicpen-media', () => {
       describe('and btoa available', () => {
         const originalBtoa = global.Blob;
         beforeEach(() => {
-          global.btoa = sinon.spy(obj => new Buffer(obj).toString('base64'));
+          global.btoa = sinon.spy(obj => Buffer.from(obj).toString('base64'));
         });
 
         afterEach(() => {
@@ -278,7 +278,7 @@ describe('magicpen-media', () => {
         expect(
           magicPen
             .clone('text')
-            .media(new Buffer([1, 2, 3]), { contentType: 'image' })
+            .media(Buffer.from([1, 2, 3]), { contentType: 'image' })
             .toString(),
           'to equal',
           'Buffer[3] (image)'
@@ -437,7 +437,7 @@ describe('magicpen-media', () => {
           expect(fs.statSync(fileName), 'to satisfy', {
             isFile: expect.it('when called to be true')
           });
-          expect(fs.readFileSync(fileName), 'to equal', new Buffer([1, 2, 3]));
+          expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
 
       it('should write the contents of a Uint8Array to a temporary file', () =>
@@ -452,14 +452,14 @@ describe('magicpen-media', () => {
           expect(fs.statSync(fileName), 'to satisfy', {
             isFile: expect.it('when called to be true')
           });
-          expect(fs.readFileSync(fileName), 'to equal', new Buffer([1, 2, 3]));
+          expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
 
       it('should write the contents of a Buffer to a temporary file', () =>
         expect(() => {
           const text = magicPen
             .clone('text')
-            .image(new Buffer([1, 2, 3]), { fallbackToDisc: true })
+            .image(Buffer.from([1, 2, 3]), { fallbackToDisc: true })
             .toString();
           expect(text, 'to match', /^\/tmp\/.* \(image\)/);
           const fileName = text.split(' ')[0];
@@ -467,7 +467,7 @@ describe('magicpen-media', () => {
           expect(fs.statSync(fileName), 'to satisfy', {
             isFile: expect.it('when called to be true')
           });
-          expect(fs.readFileSync(fileName), 'to equal', new Buffer([1, 2, 3]));
+          expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
 
       it('should use an explicitly provided file name when a data url is written to disc', () =>
@@ -490,7 +490,7 @@ describe('magicpen-media', () => {
           expect(
             fs.readFileSync(fileName),
             'to equal',
-            new Buffer([0x31, 0x32, 0x33])
+            Buffer.from([0x31, 0x32, 0x33])
           );
         }, 'not to error'));
 
@@ -500,7 +500,7 @@ describe('magicpen-media', () => {
           expect(
             magicPen
               .clone('text')
-              .image(new Buffer([1, 2, 3]), { fallbackToDisc: fileName })
+              .image(Buffer.from([1, 2, 3]), { fallbackToDisc: fileName })
               .toString(),
             'to equal',
             `${fileName} (image)`
@@ -509,7 +509,7 @@ describe('magicpen-media', () => {
           expect(fs.statSync(fileName), 'to satisfy', {
             isFile: expect.it('when called to be true')
           });
-          expect(fs.readFileSync(fileName), 'to equal', new Buffer([1, 2, 3]));
+          expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
     });
   });
