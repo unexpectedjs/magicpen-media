@@ -22,6 +22,6 @@ Output:
 
 ```html
 <div style="font-family: monospace; white-space: nowrap">
-  <div><img src="foo.png"></div>
+  <div><img src="foo.png" /></div>
 </div>
 ```

@@ -3,18 +3,13 @@ const magicPen = new MagicPen().installPlugin(require('../lib/magicPenMedia'));
 const getTemporaryFilePath = require('gettemporaryfilepath');
 const sinon = require('sinon');
 const fs = require('fs');
-const expect = require('unexpected')
-  .clone()
-  .use(require('unexpected-sinon'));
+const expect = require('unexpected').clone().use(require('unexpected-sinon'));
 
 describe('magicpen-media', () => {
   describe('in HTML mode', () => {
     it('should render an image given as a path', () => {
       expect(
-        magicPen
-          .clone('html')
-          .media('foo/bar.jpg')
-          .toString(),
+        magicPen.clone('html').media('foo/bar.jpg').toString(),
         'to equal',
         '<div style="font-family: monospace; white-space: nowrap"><div><img src="foo/bar.jpg" title="foo/bar.jpg"></div></div>'
       );
@@ -22,10 +17,7 @@ describe('magicpen-media', () => {
 
     it('should link to the image url if link:true is provided in the options object', () => {
       expect(
-        magicPen
-          .clone('html')
-          .media('foo/bar.jpg', { link: true })
-          .toString(),
+        magicPen.clone('html').media('foo/bar.jpg', { link: true }).toString(),
         'to equal',
         '<div style="font-family: monospace; white-space: nowrap"><div><a href="foo/bar.jpg"><img src="foo/bar.jpg" title="foo/bar.jpg"></a></div></div>'
       );
@@ -44,10 +36,7 @@ describe('magicpen-media', () => {
 
     it('should entitify the src attribute properly', () => {
       expect(
-        magicPen
-          .clone('html')
-          .media('foo&bar".jpg')
-          .toString(),
+        magicPen.clone('html').media('foo&bar".jpg').toString(),
         'to equal',
         '<div style="font-family: monospace; white-space: nowrap"><div><img src="foo&amp;bar&quot;.jpg" title="foo&amp;bar&quot;.jpg"></div></div>'
       );
@@ -77,10 +66,7 @@ describe('magicpen-media', () => {
 
     it('should render an image given as a data: url', () => {
       expect(
-        magicPen
-          .clone('html')
-          .media('data:image/jpg,base64;Zm9v')
-          .toString(),
+        magicPen.clone('html').media('data:image/jpg,base64;Zm9v').toString(),
         'to equal',
         '<div style="font-family: monospace; white-space: nowrap"><div><img src="data:image/jpg,base64;Zm9v"></div></div>'
       );
@@ -124,13 +110,13 @@ describe('magicpen-media', () => {
 
       const originalURL = global.URL;
       beforeEach(() => {
-        global.Blob = sinon.spy(function(data, contentType) {
+        global.Blob = sinon.spy(function (data, contentType) {
           this.data = data;
           this.contentType = contentType;
         });
 
         global.URL = {
-          createObjectURL: sinon.spy(() => 'blob:foobarquux')
+          createObjectURL: sinon.spy(() => 'blob:foobarquux'),
         };
       });
 
@@ -217,7 +203,7 @@ describe('magicpen-media', () => {
       describe('and btoa available', () => {
         const originalBtoa = global.Blob;
         beforeEach(() => {
-          global.btoa = sinon.spy(obj => Buffer.from(obj).toString('base64'));
+          global.btoa = sinon.spy((obj) => Buffer.from(obj).toString('base64'));
         });
 
         afterEach(() => {
@@ -243,10 +229,7 @@ describe('magicpen-media', () => {
     describe('#media', () => {
       it('should render an image given as a path and no Content-Type as-is with "media" in parentheses', () => {
         expect(
-          magicPen
-            .clone('text')
-            .media('foo/bar.jpg')
-            .toString(),
+          magicPen.clone('text').media('foo/bar.jpg').toString(),
           'to equal',
           'foo/bar.jpg (image/jpeg)'
         );
@@ -254,10 +237,7 @@ describe('magicpen-media', () => {
 
       it('should render an image given as a path and a Content-Type of "image" as-is with "image" in parentheses', () => {
         expect(
-          magicPen
-            .clone('text')
-            .media('foo/bar.jpg', 'image')
-            .toString(),
+          magicPen.clone('text').media('foo/bar.jpg', 'image').toString(),
           'to equal',
           'foo/bar.jpg (image/jpeg)'
         );
@@ -289,10 +269,7 @@ describe('magicpen-media', () => {
     describe('#image', () => {
       it('should render an image given as a path and no Content-Type as-is with a looked up Content-Type', () => {
         expect(
-          magicPen
-            .clone('text')
-            .image('foo/bar.svg')
-            .toString(),
+          magicPen.clone('text').image('foo/bar.svg').toString(),
           'to equal',
           'foo/bar.svg (image/svg+xml)'
         );
@@ -300,10 +277,7 @@ describe('magicpen-media', () => {
 
       it('should accept the content type as the second parameter', () => {
         expect(
-          magicPen
-            .clone('text')
-            .image('foo/bar.jpg', 'image/jpeg')
-            .toString(),
+          magicPen.clone('text').image('foo/bar.jpg', 'image/jpeg').toString(),
           'to equal',
           'foo/bar.jpg (image/jpeg)'
         );
@@ -322,10 +296,7 @@ describe('magicpen-media', () => {
 
       it('should render a data url', () => {
         expect(
-          magicPen
-            .clone('text')
-            .image('data:image/png,base64;AQID')
-            .toString(),
+          magicPen.clone('text').image('data:image/png,base64;AQID').toString(),
           'to equal',
           'data url (image/png)'
         );
@@ -346,10 +317,7 @@ describe('magicpen-media', () => {
     describe('#audio', () => {
       it('should render an audio file given as a path and no Content-Type with the looked up Content-Type in parentheses', () => {
         expect(
-          magicPen
-            .clone('text')
-            .audio('foo/bar.aiff')
-            .toString(),
+          magicPen.clone('text').audio('foo/bar.aiff').toString(),
           'to equal',
           'foo/bar.aiff (audio/x-aiff)'
         );
@@ -357,10 +325,7 @@ describe('magicpen-media', () => {
 
       it('should accept the content type as the second parameter', () => {
         expect(
-          magicPen
-            .clone('text')
-            .audio('foo/bar.aiff', 'audio/aiff')
-            .toString(),
+          magicPen.clone('text').audio('foo/bar.aiff', 'audio/aiff').toString(),
           'to equal',
           'foo/bar.aiff (audio/aiff)'
         );
@@ -381,10 +346,7 @@ describe('magicpen-media', () => {
     describe('#video', () => {
       it('should render an video file given as a path and no Content-Type as-is with the looked up Content-Type in parentheses', () => {
         expect(
-          magicPen
-            .clone('text')
-            .video('foo/bar.mkv')
-            .toString(),
+          magicPen.clone('text').video('foo/bar.mkv').toString(),
           'to equal',
           'foo/bar.mkv (video/x-matroska)'
         );
@@ -392,10 +354,7 @@ describe('magicpen-media', () => {
 
       it('should render an video file given as a path and no Content-Type as-is with "video" in parentheses when the video style is used and the extension is unknown', () => {
         expect(
-          magicPen
-            .clone('text')
-            .video('foo/bar.foo')
-            .toString(),
+          magicPen.clone('text').video('foo/bar.foo').toString(),
           'to equal',
           'foo/bar.foo (video)'
         );
@@ -435,7 +394,7 @@ describe('magicpen-media', () => {
           const fileName = text.split(' ')[0];
 
           expect(fs.statSync(fileName), 'to satisfy', {
-            isFile: expect.it('when called to be true')
+            isFile: expect.it('when called to be true'),
           });
           expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
@@ -450,7 +409,7 @@ describe('magicpen-media', () => {
           const fileName = text.split(' ')[0];
 
           expect(fs.statSync(fileName), 'to satisfy', {
-            isFile: expect.it('when called to be true')
+            isFile: expect.it('when called to be true'),
           });
           expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
@@ -465,7 +424,7 @@ describe('magicpen-media', () => {
           const fileName = text.split(' ')[0];
 
           expect(fs.statSync(fileName), 'to satisfy', {
-            isFile: expect.it('when called to be true')
+            isFile: expect.it('when called to be true'),
           });
           expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
@@ -477,7 +436,7 @@ describe('magicpen-media', () => {
             magicPen
               .clone('text')
               .image('data:image/png;base64,MTIz', {
-                fallbackToDisc: fileName
+                fallbackToDisc: fileName,
               })
               .toString(),
             'to equal',
@@ -485,7 +444,7 @@ describe('magicpen-media', () => {
           );
 
           expect(fs.statSync(fileName), 'to satisfy', {
-            isFile: expect.it('when called to be true')
+            isFile: expect.it('when called to be true'),
           });
           expect(
             fs.readFileSync(fileName),
@@ -507,7 +466,7 @@ describe('magicpen-media', () => {
           );
 
           expect(fs.statSync(fileName), 'to satisfy', {
-            isFile: expect.it('when called to be true')
+            isFile: expect.it('when called to be true'),
           });
           expect(fs.readFileSync(fileName), 'to equal', Buffer.from([1, 2, 3]));
         }, 'not to error'));
