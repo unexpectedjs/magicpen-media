@@ -1,3 +1,33 @@
+### v2.0.0 (2020-11-22)
+
+#### Pull requests
+
+- [#45](https://github.com/unexpectedjs/magicpen-media/pull/45) Upgrade unexpected-sinon to version 11.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#46](https://github.com/unexpectedjs/magicpen-media/pull/46) Upgrade prettier to version 2.2.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#43](https://github.com/unexpectedjs/magicpen-media/pull/43) Upgrade eslint-config-standard to version 16.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#42](https://github.com/unexpectedjs/magicpen-media/pull/42) Upgrade eslint-config-standard to version 15.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#40](https://github.com/unexpectedjs/magicpen-media/pull/40) Upgrade browserify to version 17.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#37](https://github.com/unexpectedjs/magicpen-media/pull/37) Upgrade prettier to version 2.1.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#36](https://github.com/unexpectedjs/magicpen-media/pull/36) Upgrade eslint-plugin-mocha to version 8.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#32](https://github.com/unexpectedjs/magicpen-media/pull/32) Upgrade eslint-plugin-mocha to version 7.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#31](https://github.com/unexpectedjs/magicpen-media/pull/31) Upgrade eslint to version 7.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#28](https://github.com/unexpectedjs/magicpen-media/pull/28) Upgrade sinon to version 9.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#27](https://github.com/unexpectedjs/magicpen-media/pull/27) Upgrade mocha to version 7.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#26](https://github.com/unexpectedjs/magicpen-media/pull/26) Upgrade eslint-plugin-node to version 11.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#24](https://github.com/unexpectedjs/magicpen-media/pull/24) Upgrade nyc to version 15.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#25](https://github.com/unexpectedjs/magicpen-media/pull/25) Upgrade sinon to version 8.0.1 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#23](https://github.com/unexpectedjs/magicpen-media/pull/23) Upgrade eslint-plugin-node to version 10.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#22](https://github.com/unexpectedjs/magicpen-media/pull/22) Upgrade eslint-config-standard to version 14.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+
+#### Commits to master
+
+- [Drop support for node.js &lt;10, add 14, lint with 14 \(semver-major\)](https://github.com/unexpectedjs/magicpen-media/commit/c2f580b5b8b9403825308f7e5f6fbe62f55113cc) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Add offline-github-changelog integration + CHANGELOG.md](https://github.com/unexpectedjs/magicpen-media/commit/0fbb8a64450b900646261c48d621810b2272efac) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Sanitize .prettierignore](https://github.com/unexpectedjs/magicpen-media/commit/c1cfd287ba7b28023200f1e30ed6e65c625a45d3) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Also check \*.json with prettier](https://github.com/unexpectedjs/magicpen-media/commit/fd864bfb1c3de3c838222ec226499cadbe0b1691) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [Update unexpected to ^12.0.0](https://github.com/unexpectedjs/magicpen-media/commit/b5b50b44224932dc0eca1dc09c6ee9094877453e) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
+- [+10 more](https://github.com/unexpectedjs/magicpen-media/compare/v2.0.0...v2.0.0)
+
 ### v2.0.0 (2019-06-23)
 
 #### Pull requests
