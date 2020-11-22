@@ -25,3 +25,7 @@ Output:
   <div><img src="foo.png" /></div>
 </div>
 ```
+
+## Releases
+
+[Changelog](https://github.com/unexpectedjs/magicpen-media/blob/master/CHANGELOG.md)
