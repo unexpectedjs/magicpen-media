@@ -1,4 +1,19 @@
-### v2.0.0 (2020-11-22)
+### v3.0.0 (2021-04-25)
+
+#### Pull requests
+
+- [#52](https://github.com/unexpectedjs/magicpen-media/pull/52) Upgrade sinon to version 10.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#49](https://github.com/unexpectedjs/magicpen-media/pull/49) Upgrade mocha to version 8.3.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#48](https://github.com/unexpectedjs/magicpen-media/pull/48) Upgrade eslint-config-prettier to version 7.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+- [#47](https://github.com/unexpectedjs/magicpen-media/pull/47) Upgrade eslint-plugin-standard to version 5.0.0 ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+
+#### Commits to master
+
+- [Fix rendering of Uint8Array in node.js, where btoa exists as a top level function](https://github.com/unexpectedjs/magicpen-media/commit/95d5405a6ccb468c01848e2b4c603dea8e32523a) ([Andreas Lind](mailto:andreas.lind@workday.com))
+- [Fix eslint-plugin-prettier usage](https://github.com/unexpectedjs/magicpen-media/commit/1079255a42e03a48a02d4f9ac298aa4b8233f24a) ([Andreas Lind](mailto:andreas.lind@workday.com))
+- [Update eslint-config-prettier to version 8.2.0](https://github.com/unexpectedjs/magicpen-media/commit/594864126359e77e38a16df9022e818c90b6f8f6) ([depfu[bot]](mailto:23717796+depfu[bot]@users.noreply.github.com))
+
+### v3.0.0 (2020-11-22)
 
 #### Pull requests
 
@@ -26,7 +41,7 @@
 - [Sanitize .prettierignore](https://github.com/unexpectedjs/magicpen-media/commit/c1cfd287ba7b28023200f1e30ed6e65c625a45d3) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
 - [Also check \*.json with prettier](https://github.com/unexpectedjs/magicpen-media/commit/fd864bfb1c3de3c838222ec226499cadbe0b1691) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
 - [Update unexpected to ^12.0.0](https://github.com/unexpectedjs/magicpen-media/commit/b5b50b44224932dc0eca1dc09c6ee9094877453e) ([Andreas Lind](mailto:andreaslindpetersen@gmail.com))
-- [+10 more](https://github.com/unexpectedjs/magicpen-media/compare/v2.0.0...v2.0.0)
+- [+10 more](https://github.com/unexpectedjs/magicpen-media/compare/v2.0.0...v3.0.0)
 
 ### v2.0.0 (2019-06-23)
 
