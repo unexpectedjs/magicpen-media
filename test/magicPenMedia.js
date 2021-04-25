@@ -395,7 +395,11 @@ describe('magicpen-media', () => {
             .clone('text')
             .image('data:image/png;base64,AQID', { fallbackToDisc: true })
             .toString();
-          expect(text, 'to match', /^\/tmp\/.* \(image\/png\)$/);
+          expect(
+            text,
+            'to match',
+            /^\/(?:tmp|var\/folders)\/.* \(image\/png\)$/
+          );
           const fileName = text.split(' ')[0];
 
           expect(fs.statSync(fileName), 'to satisfy', {
@@ -410,7 +414,7 @@ describe('magicpen-media', () => {
             .clone('text')
             .image(new Uint8Array([1, 2, 3]), { fallbackToDisc: true })
             .toString();
-          expect(text, 'to match', /^\/tmp\/.* \(image\)$/);
+          expect(text, 'to match', /^\/(?:tmp|var\/folders)\/.* \(image\)$/);
           const fileName = text.split(' ')[0];
 
           expect(fs.statSync(fileName), 'to satisfy', {
@@ -425,7 +429,7 @@ describe('magicpen-media', () => {
             .clone('text')
             .image(Buffer.from([1, 2, 3]), { fallbackToDisc: true })
             .toString();
-          expect(text, 'to match', /^\/tmp\/.* \(image\)/);
+          expect(text, 'to match', /^\/(?:tmp|var\/folders)\/.* \(image\)/);
           const fileName = text.split(' ')[0];
 
           expect(fs.statSync(fileName), 'to satisfy', {
