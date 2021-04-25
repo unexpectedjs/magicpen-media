@@ -200,14 +200,19 @@ describe('magicpen-media', () => {
         );
       });
 
-      describe('and btoa available', () => {
+      describe('and btoa available, but no Buffer', () => {
         const originalBtoa = global.Blob;
+        const originalBuffer = global.Buffer;
         beforeEach(() => {
-          global.btoa = sinon.spy((obj) => Buffer.from(obj).toString('base64'));
+          global.btoa = sinon.spy((obj) =>
+            originalBuffer.from(obj).toString('base64')
+          );
+          global.Buffer = undefined;
         });
 
         afterEach(() => {
           global.btoa = originalBtoa;
+          global.Buffer = originalBuffer;
         });
 
         it('should use btoa when building a data: url', () => {
