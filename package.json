@@ -1,6 +1,6 @@
 {
   "name": "magicpen-media",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Add media support to magicpen (images, audio, video)",
   "repository": {
     "type": "git",

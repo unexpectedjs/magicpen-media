@@ -1,4 +1,9 @@
-### v3.0.0 (2021-04-25)
+### v3.0.1 (2021-04-25)
+
+- [Tests: Also accept error messages referencing \/var\/folders so that the test suite works on a mac](https://github.com/unexpectedjs/magicpen-media/commit/a9c348a1eea6763d92167770f08b8df054d07455) ([Andreas Lind](mailto:andreas.lind@workday.com))
+- [Fix browser support + broken test](https://github.com/unexpectedjs/magicpen-media/commit/d3d98ea9ff6b728978494e33b1d48306256d95df) ([Andreas Lind](mailto:andreas.lind@workday.com))
+
+### v3.0.1 (2021-04-25)
 
 #### Pull requests
 
